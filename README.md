@@ -18,11 +18,11 @@ sudo ansible-playbook playbooks/pl_setup_ts_docker.yml
 The `docker exec` command allows you to run commands inside a Docker container. The following command line will give you a shell inside your `teamspeak` container:
 
 ```shell
-$ docker exec -it some-teamspeak sh
+$ docker exec -it teamspeak bash
 ```
 
 The TeamSpeak server log is available through Docker's container log:
 
 ```shell
-$ docker logs some-teamspeak
+$ docker logs teamspeak
 ```
