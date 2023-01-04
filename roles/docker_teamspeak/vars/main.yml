@@ -1,0 +1,5 @@
+---
+# vars file for docker_teamspeak
+
+ts_docker_compose_tmp: docker-compose.yml.j2
+ts_docker_compose_file: docker-compose.yml

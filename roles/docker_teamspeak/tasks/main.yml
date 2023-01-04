@@ -1,0 +1,38 @@
+---
+# tasks file for docker_teamspeak
+
+- name: Set variables for docker-compose
+  set_fact:
+    ts_variables_local_path: "{{ ts_volumes_local_path }}/{{ item.server }}/.env"
+    ts_docker_project_path: "{{ ts_volumes_local_path }}/{{ item.server }}/{{ ts_docker_compose_file }}"
+  with_items:
+    - "{{ docker_teamspeak_servers }}"
+  when:
+    - docker_teamspeak_servers is defined
+    - docker_teamspeak_servers | length > 0
+
+- name: Create subfolder for container
+  file:
+    path: "{{ ts_variables_local_path }}"
+    recurse: true
+    state: directory
+  register: result_create_path
+  when:
+    - ts_variables_local_path is defined
+    - ts_variables_local_path | length > 0
+
+- name: Check path for teamspeak servers
+  stat:
+    path: "{{ ts_variables_local_path }}"
+  register: check_path_ts_env
+
+- name: preparation docker-compose file
+  include_tasks: docker_prepare.yml
+  when: check_path_ts_env.stat.exists
+
+- name: Container teamspeak deploy
+  community.docker.docker_compose:
+    project_src: "{{ ts_docker_project_path }}"
+    state: "{{ ts_container_state }}"
+  register: check_container
+  when: check_docker_compose_file.stat.exists

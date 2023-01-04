@@ -1,0 +1,32 @@
+---
+
+# variables for docker-compose
+- name: Create variables file for Zabbix server + agent
+  template:
+    src: "env_vars/{{ item.src }}"
+    dest: "{{ ts_variables_local_path }}/{{ item.dest }}"
+  loop:
+    - {src: '.env_teamspeak.j2', dest: '.env_teamspeak'}
+    - {src: '.env_mariadb.j2', dest: '.env_mariadb'}
+
+    - {src: '.TS3SERVER_DB_USER.j2', dest: '.TS3SERVER_DB_USER'}
+    - {src: '.TS3SERVER_DB_PASSWORD.j2', dest: '.TS3SERVER_DB_PASSWORD'}
+    - {src: '.MYSQL_ROOT_PASSWORD.yml.j2', dest: '.MYSQL_ROOT_PASSWORD'}
+
+# docker-compose.yml
+- name: write docker-compose files
+  template:
+    src: "{{ ts_docker_compose_tmp }}"
+    dest: "{{ ts_volumes_local_path }}/{{ item.server }}/{{ ts_docker_compose_file }}"
+    force: true
+  with_items:
+    - "{{ docker_teamspeak_servers }}"
+  register: created_dockercompose_file
+  when:
+    - ts_docker_compose_tmp is defined
+    - ts_docker_compose_tmp|length > 0
+
+- name: Check docker-compose files
+  stat:
+    path: "{{ ts_docker_project_path }}"
+  register: check_docker_compose_file

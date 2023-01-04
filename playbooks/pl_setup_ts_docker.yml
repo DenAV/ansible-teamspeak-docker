@@ -1,0 +1,15 @@
+---
+- name: Setup TeamSpeak with docker
+  hosts: localhost
+  connection: local
+  become: true
+  gather_facts: true
+
+  tasks:
+    - name: Setup TeamSpeak
+      include_role:
+        name: docker_teamspeak
+      vars:
+        ts_releases_image: "3.13.7"
+        ts_container_state: 'present'
+        ts_volumes_local_path: "/teamspeak"

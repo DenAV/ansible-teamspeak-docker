@@ -1,0 +1,17 @@
+---
+# defaults file for docker_teamspeak
+
+ts_releases_image: "3.13.7"
+ts_container_state: 'present'
+
+ts_volumes_local_path: "/teamspeak"
+
+ts_variables_local_path: ""
+
+# a default server instance
+docker_teamspeak_servers:
+  - server: ts3server
+    voice_server_port: 9987
+    server_query_port: 10077
+    file_transfer_port: 30033
+    restart: always
