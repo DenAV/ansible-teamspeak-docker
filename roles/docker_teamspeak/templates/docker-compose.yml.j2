@@ -15,7 +15,9 @@ services:
       - {{ item.voice_server_port }}:9987/udp
       - {{ item.server_query_port }}:10011
       - {{ item.file_transfer_port }}:30033
-
+    links:
+      - db
+      
     volumes:
       - "{{ ts_volumes_local_path }}/{{ item.server }}:/var/ts3server:rw"
 
