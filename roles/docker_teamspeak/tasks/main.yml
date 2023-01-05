@@ -5,8 +5,6 @@
   set_fact:
     ts_variables_local_path: "{{ ts_volumes_local_path }}/.env"
     ts_docker_project_path: "{{ ts_volumes_local_path }}"
-  with_items:
-    - "{{ docker_teamspeak_servers }}"
   when:
     - docker_teamspeak_servers is defined
     - docker_teamspeak_servers | length > 0
