@@ -22,10 +22,6 @@ services:
     env_file:
       - "{{ ts_variables_local_path }}/.env_teamspeak"
 
-    secrets:
-      - TS3SERVER_DB_USER
-      - TS3SERVER_DB_PASSWORD
-
     networks:
       ts_net_backend:
         aliases:
@@ -43,24 +39,10 @@ services:
     env_file:
       - "{{ ts_variables_local_path }}/.env_mariadb"
 
-    secrets:
-      - TS3SERVER_DB_USER
-      - TS3SERVER_DB_PASSWORD    
-      - MARIADB_ROOT_PASSWORD
-
     networks:
       ts_net_backend:
         aliases:
           - mariadb
-
-# teamspeak-secrets
-secrets:
-  TS3SERVER_DB_USER:
-    file: "{{ ts_variables_local_path }}/.TS3SERVER_DB_USER"
-  TS3SERVER_DB_PASSWORD:
-    file: "{{ ts_variables_local_path }}/.TS3SERVER_DB_PASSWORD"
-  MARIADB_ROOT_PASSWORD:
-    file: "{{ ts_variables_local_path }}/.MARIADB_ROOT_PASSWORD"
 
 # teamspeak-network
 networks:
