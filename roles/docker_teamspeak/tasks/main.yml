@@ -3,8 +3,8 @@
 
 - name: Set variables for docker-compose
   set_fact:
-    ts_variables_local_path: "{{ ts_volumes_local_path }}/{{ item.server }}/.env"
-    ts_docker_project_path: "{{ ts_volumes_local_path }}/{{ item.server }}"
+    ts_variables_local_path: "{{ ts_volumes_local_path }}/.env"
+    ts_docker_project_path: "{{ ts_volumes_local_path }}"
   with_items:
     - "{{ docker_teamspeak_servers }}"
   when:

@@ -36,7 +36,7 @@ services:
     container_name: mariadb
     restart: {{ item.restart }}
     volumes:
-      - "{{ ts_volumes_local_path }}/{{ item.server }}/mariadb:/var/lib/mysql:rw"
+      - "{{ ts_volumes_local_path }}/mariadb:/var/lib/mysql:rw"
 
     env_file:
       - "{{ ts_variables_local_path }}/.env_mariadb"
