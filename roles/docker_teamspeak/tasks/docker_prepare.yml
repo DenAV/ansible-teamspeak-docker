@@ -11,7 +11,7 @@
 
     - {src: '.TS3SERVER_DB_USER.j2', dest: '.TS3SERVER_DB_USER'}
     - {src: '.TS3SERVER_DB_PASSWORD.j2', dest: '.TS3SERVER_DB_PASSWORD'}
-    - {src: '.MYSQL_ROOT_PASSWORD.j2', dest: '.MYSQL_ROOT_PASSWORD'}
+    - {src: '.MARIADB_ROOT_PASSWORD.j2', dest: '.MARIADB_ROOT_PASSWORD'}
 
 # docker-compose.yml
 - name: write docker-compose files

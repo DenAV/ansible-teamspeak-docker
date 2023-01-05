@@ -46,7 +46,7 @@ services:
     secrets:
       - TS3SERVER_DB_USER
       - TS3SERVER_DB_PASSWORD    
-      - MYSQL_ROOT_PASSWORD
+      - MARIADB_ROOT_PASSWORD
 
     networks:
       ts_net_backend:
@@ -59,8 +59,8 @@ secrets:
     file: "{{ ts_variables_local_path }}/.TS3SERVER_DB_USER"
   TS3SERVER_DB_PASSWORD:
     file: "{{ ts_variables_local_path }}/.TS3SERVER_DB_PASSWORD"
-  MYSQL_ROOT_PASSWORD:
-    file: "{{ ts_variables_local_path }}/.MYSQL_ROOT_PASSWORD"
+  MARIADB_ROOT_PASSWORD:
+    file: "{{ ts_variables_local_path }}/.MARIADB_ROOT_PASSWORD"
 
 # teamspeak-network
 networks:
